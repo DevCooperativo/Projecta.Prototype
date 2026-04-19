@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir \"D:\\\\Devcoop\\\\Projetos\\\\Projecta\\\\Projecta.Prototype\")",
+      "Bash(git *)",
+      "Bash(python -c \"import fitz; doc=fitz.open\\('D:/Devcoop/Projetos/Projecta/Projecta.Prototype/reference/documento de requisitos.pdf'\\); print\\('\\\\n'.join\\([doc.load_page\\(i\\).get_text\\(\\) for i in range\\(min\\(10,doc.page_count\\)\\)]\\)\\)\")",
+      "Bash(python -c \"import PyPDF2; r=PyPDF2.PdfReader\\('D:/Devcoop/Projetos/Projecta/Projecta.Prototype/reference/documento de requisitos.pdf'\\); print\\('\\\\n'.join\\([r.pages[i].extract_text\\(\\) for i in range\\(min\\(10,len\\(r.pages\\)\\)\\)]\\)\\)\")",
+      "Bash(node -e ' *)"
+    ]
+  }
+}

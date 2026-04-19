@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coordenadoria — Projecta</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid px-4">
+      <a class="navbar-brand fw-bold" href="../index.html">Projecta</a>
+      <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarApp" aria-controls="navbarApp" aria-expanded="false" aria-label="Alternar navegação">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarApp">
+        <ul class="navbar-nav me-auto ms-3 gap-1">
+          <li class="nav-item"><a class="nav-link" href="#">Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Projetos</a></li>
+          <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.html">Coordenadorias</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Laboratórios</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Usuários</a></li>
+        </ul>
+        <div class="dropdown mt-3 mt-lg-0">
+          <button class="btn btn-sm btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Administrador</button>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="#">Meu perfil</a></li>
+            <li><a class="dropdown-item" href="#">Configurações</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="../index.html">Sair</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Conteúdo principal -->
+  <main class="container py-4">
+
+    <!-- Cabeçalho -->
+    <div class="d-flex justify-content-between align-items-start mb-4">
+      <div>
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb mb-1 small">
+            <li class="breadcrumb-item"><a href="#" class="text-muted text-decoration-none">Início</a></li>
+            <li class="breadcrumb-item"><a href="index.html" class="text-muted text-decoration-none">Coordenadorias</a></li>
+            <li class="breadcrumb-item active" id="breadcrumbName" aria-current="page">Coordenadoria</li>
+          </ol>
+        </nav>
+        <div class="d-flex align-items-center gap-2 mt-1 flex-wrap">
+          <h4 class="fw-bold mb-0" id="pageTitle">—</h4>
+          <span class="badge bg-light text-dark border fw-normal" id="acronymBadge"></span>
+          <span id="statusBadge"></span>
+        </div>
+      </div>
+      <div class="d-flex gap-2">
+        <a href="#" class="btn btn-outline-dark btn-sm" id="editBtn">Editar</a>
+        <button class="btn btn-outline-danger btn-sm" id="deleteBtn">Excluir</button>
+      </div>
+    </div>
+
+    <div class="row g-4">
+
+      <!-- Coluna principal -->
+      <div class="col-lg-8">
+        <div class="card border-0 shadow-sm">
+          <div class="card-body p-4">
+            <h6 class="fw-semibold mb-4 pb-2 border-bottom">Dados da coordenadoria</h6>
+            <div class="row g-3">
+              <div class="col-md-8">
+                <p class="text-muted small mb-1">Nome</p>
+                <p class="fw-semibold mb-0" id="detailName">—</p>
+              </div>
+              <div class="col-md-4">
+                <p class="text-muted small mb-1">Sigla</p>
+                <p class="fw-semibold mb-0" id="detailAcronym">—</p>
+              </div>
+              <div class="col-md-4">
+                <p class="text-muted small mb-1">Bloco</p>
+                <p class="mb-0" id="detailBlock">—</p>
+              </div>
+              <div class="col-12">
+                <p class="text-muted small mb-1">Descrição</p>
+                <p class="mb-0 small" id="detailDescription">—</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Coluna lateral -->
+      <div class="col-lg-4">
+        <div class="card border-0 shadow-sm">
+          <div class="card-body p-4">
+            <h6 class="fw-semibold mb-4 pb-2 border-bottom">Informações do registro</h6>
+            <div class="d-flex flex-column gap-3">
+              <div>
+                <p class="text-muted small mb-1">Status</p>
+                <span id="detailStatusInline">—</span>
+              </div>
+              <div>
+                <p class="text-muted small mb-1">Professores vinculados</p>
+                <p class="fw-semibold mb-0" id="detailProfessorCount">0</p>
+              </div>
+              <div>
+                <p class="text-muted small mb-1">Cadastrada em</p>
+                <p class="mb-0 small" id="detailCreatedAt">—</p>
+              </div>
+              <div>
+                <p class="text-muted small mb-1">Última atualização</p>
+                <p class="mb-0 small" id="detailUpdatedAt">—</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Modal de exclusão -->
+  <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header border-0 pb-0">
+          <h5 class="modal-title fw-semibold" id="deleteModalLabel">Excluir coordenadoria</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+        <div class="modal-body py-3">
+          <p class="text-muted mb-0" id="deleteModalBody"></p>
+        </div>
+        <div class="modal-footer border-0 pt-0" id="deleteModalFooter"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/coordination-data.js"></script>
+  <script src="../js/coordination-detail.js"></script>
+</body>
+</html>
