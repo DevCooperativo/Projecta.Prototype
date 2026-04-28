@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Entrar - Projecta</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+</head>
+<body class="bg-light">
+
+  <nav class="navbar navbar-light bg-white border-bottom">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="index.html">Projecta</a>
+      <a href="register.html" class="btn btn-outline-dark btn-sm px-3">Solicitar acesso</a>
+    </div>
+  </nav>
+
+  <main class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8 col-lg-5">
+        <div class="mb-4 text-center">
+          <p class="text-uppercase text-muted small fw-semibold mb-2">Instituto Tecnológico do Litoral</p>
+          <h1 class="h3 fw-bold mb-2">Entrar no Projecta</h1>
+          <p class="text-muted mb-0">Acesse sua area de gestao de projetos e laboratorios.</p>
+        </div>
+
+        <div class="card border-0 shadow-sm">
+          <div class="card-body p-4">
+            <form id="loginForm" novalidate>
+              <div class="mb-3">
+                <label for="email" class="form-label fw-semibold small">
+                  E-mail <span class="text-danger">*</span>
+                </label>
+                <input type="email" id="email" name="email" class="form-control" placeholder="nome@itl.edu.br" required>
+                <div class="invalid-feedback">Informe um e-mail valido.</div>
+              </div>
+
+              <div class="mb-3">
+                <label for="password" class="form-label fw-semibold small">
+                  Senha <span class="text-danger">*</span>
+                </label>
+                <input type="password" id="password" name="password" class="form-control" minlength="6" required>
+                <div class="invalid-feedback">Informe sua senha.</div>
+              </div>
+
+              <div class="mb-4">
+                <label for="profile" class="form-label fw-semibold small">
+                  Perfil de acesso <span class="text-danger">*</span>
+                </label>
+                <select id="profile" name="profile" class="form-select" required>
+                  <option value="admin">Administrador</option>
+                  <option value="professor">Professor</option>
+                  <option value="student">Aluno</option>
+                </select>
+                <div class="invalid-feedback">Selecione o perfil de acesso.</div>
+              </div>
+
+              <button type="submit" class="btn btn-dark w-100">Entrar</button>
+            </form>
+          </div>
+        </div>
+
+        <p class="text-center text-muted small mt-4 mb-0">
+          Ainda não possui acesso?
+          <a href="register.html" class="text-dark fw-semibold text-decoration-none">Solicite seu cadastro</a>.
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1100">
+    <div id="feedbackToast" class="toast align-items-center text-bg-dark border-0" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="d-flex">
+        <div class="toast-body" id="toastMessage"></div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Fechar"></button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/login.js"></script>
+</body>
+</html>
