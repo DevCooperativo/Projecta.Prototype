@@ -22,6 +22,7 @@
   var active = '';
   if      (path.includes('/projects/'))     active = 'projects';
   else if (path.includes('/coordination/')) active = 'coordination';
+  else if (path.includes('/labs/'))         active = 'labs';
   else if (path.includes('/professors/'))   active = 'professors';
   else if (path.includes('/students/'))     active = 'students';
   else if (path.includes('/loans/'))        active = 'loans';
@@ -51,7 +52,7 @@
     navLink('#', 'Dashboard', ''),
     navLink(base + '/projects/index.html',    'Projetos',       'projects'),
     navLink(base + '/coordination/index.html', 'Coordenadorias', 'coordination'),
-    navLink('#',                               'Laboratórios',   'labs'),
+    navLink(base + '/labs/index.html',         'Laboratórios',   'labs'),
     navLink(base + '/professors/index.html',  'Professores',    'professors'),
     navLink(base + '/students/index.html',    'Alunos',         'students'),
     navLink(base + '/loans/index.html',       'Empréstimos',    'loans'),
