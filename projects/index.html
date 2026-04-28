@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Coordenadorias — Projecta</title>
+  <title>Projetos — Projecta</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 </head>
 <body class="bg-light">
@@ -18,13 +18,13 @@
       <div class="collapse navbar-collapse" id="navbarApp">
         <ul class="navbar-nav me-auto ms-3 gap-1">
           <li class="nav-item"><a class="nav-link" href="#">Dashboard</a></li>
-          <li class="nav-item"><a class="nav-link" href="../projects/index.html">Projetos</a></li>
-          <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.html">Coordenadorias</a></li>
+          <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.html">Projetos</a></li>
+          <li class="nav-item"><a class="nav-link" href="../coordination/index.html">Coordenadorias</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Laboratórios</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Usuários</a></li>
         </ul>
         <div class="dropdown mt-3 mt-lg-0">
-          <button class="btn btn-sm btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Administrador</button>
+          <button class="btn btn-sm btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Professor</button>
           <ul class="dropdown-menu dropdown-menu-end">
             <li><a class="dropdown-item" href="#">Meu perfil</a></li>
             <li><a class="dropdown-item" href="#">Configurações</a></li>
@@ -45,34 +45,41 @@
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb mb-1 small">
             <li class="breadcrumb-item"><a href="#" class="text-muted text-decoration-none">Início</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Coordenadorias</li>
+            <li class="breadcrumb-item active" aria-current="page">Projetos</li>
           </ol>
         </nav>
-        <h4 class="fw-bold mb-0">Coordenadorias</h4>
+        <h4 class="fw-bold mb-0">Projetos</h4>
       </div>
-      <a href="new.html" class="btn btn-dark">Nova coordenadoria</a>
+      <a href="new.html" class="btn btn-dark">Novo projeto</a>
     </div>
 
     <!-- Filtros -->
     <div class="card border-0 shadow-sm mb-4">
       <div class="card-body">
         <div class="row g-3 align-items-end">
-          <div class="col-md-5">
+          <div class="col-md-4">
             <label for="searchInput" class="form-label small fw-semibold text-muted mb-1">Buscar</label>
-            <input type="search" id="searchInput" class="form-control" placeholder="Nome ou sigla..." autocomplete="off">
+            <input type="search" id="searchInput" class="form-control" placeholder="Nome do projeto..." autocomplete="off">
           </div>
           <div class="col-md-3">
-            <label for="blockFilter" class="form-label small fw-semibold text-muted mb-1">Bloco</label>
-            <select id="blockFilter" class="form-select">
-              <option value="">Todos os blocos</option>
+            <label for="categoryFilter" class="form-label small fw-semibold text-muted mb-1">Categoria</label>
+            <select id="categoryFilter" class="form-select">
+              <option value="">Todas as categorias</option>
             </select>
           </div>
           <div class="col-md-2">
+            <label for="laboratoryFilter" class="form-label small fw-semibold text-muted mb-1">Laboratório</label>
+            <select id="laboratoryFilter" class="form-select">
+              <option value="">Todos</option>
+            </select>
+          </div>
+          <div class="col-md-1">
             <label for="statusFilter" class="form-label small fw-semibold text-muted mb-1">Status</label>
             <select id="statusFilter" class="form-select">
               <option value="">Todos</option>
-              <option value="active">Ativa</option>
-              <option value="inactive">Inativa</option>
+              <option value="active">Em andamento</option>
+              <option value="concluded">Concluído</option>
+              <option value="inactive">Inativo</option>
             </select>
           </div>
           <div class="col-md-2">
@@ -89,13 +96,15 @@
           <table class="table table-hover align-middle mb-0">
             <thead class="table-light border-bottom">
               <tr>
-                <th class="ps-4 py-3 fw-semibold small text-muted">Coordenadoria</th>
-                <th class="py-3 fw-semibold small text-muted">Bloco</th>
+                <th class="ps-4 py-3 fw-semibold small text-muted">Projeto</th>
+                <th class="py-3 fw-semibold small text-muted">Categoria</th>
+                <th class="py-3 fw-semibold small text-muted">Laboratório</th>
+                <th class="py-3 fw-semibold small text-muted text-center">Participantes</th>
                 <th class="py-3 fw-semibold small text-muted">Status</th>
                 <th class="py-3 fw-semibold small text-muted text-end pe-4">Ações</th>
               </tr>
             </thead>
-            <tbody id="coordinationTableBody"></tbody>
+            <tbody id="projectTableBody"></tbody>
           </table>
         </div>
       </div>
@@ -114,14 +123,11 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header border-0 pb-0">
-          <h5 class="modal-title fw-semibold" id="deleteModalLabel">Excluir coordenadoria</h5>
+          <h5 class="modal-title fw-semibold" id="deleteModalLabel">Excluir projeto</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
         </div>
         <div class="modal-body py-3">
-          <p class="text-muted mb-0" id="deleteModalBody">
-            Tem certeza que deseja excluir <strong id="deleteTargetName"></strong>?
-            Esta ação não pode ser desfeita.
-          </p>
+          <p class="text-muted mb-0" id="deleteModalBody"></p>
         </div>
         <div class="modal-footer border-0 pt-0">
           <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancelar</button>
@@ -142,7 +148,7 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="../js/coordination-data.js"></script>
-  <script src="../js/coordination-list.js"></script>
+  <script src="../js/project-data.js"></script>
+  <script src="../js/project-list.js"></script>
 </body>
 </html>
