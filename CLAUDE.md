@@ -21,7 +21,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - Equipamentos (RF25) — managed by Professor; linked to laboratory, project and category
 - Empréstimos (RF27) — requested by Professor or Aluno
 
-The full requirements are documented in `reference/documento de requisitos.pdf`. **Always consult this document before implementing any screen or feature.**
+The full requirements are documented in `reference/documento_requisitos.md`. **Always consult this document before implementing any screen or feature.**
 
 ## Tech Stack
 
