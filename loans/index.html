@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Coordenadorias — Projecta</title>
+  <title>Empréstimos — Projecta</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 </head>
 <body class="bg-light">
@@ -19,38 +19,50 @@
         <nav aria-label="breadcrumb">
           <ol class="breadcrumb mb-1 small">
             <li class="breadcrumb-item"><a href="#" class="text-muted text-decoration-none">Início</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Coordenadorias</li>
+            <li class="breadcrumb-item active" aria-current="page">Empréstimos</li>
           </ol>
         </nav>
-        <h4 class="fw-bold mb-0">Coordenadorias</h4>
+        <h4 class="fw-bold mb-0">Empréstimos</h4>
       </div>
-      <a href="new.html" class="btn btn-dark">Nova coordenadoria</a>
+      <a href="new.html" class="btn btn-dark">Novo empréstimo</a>
     </div>
 
     <!-- Filtros -->
     <div class="card border-0 shadow-sm mb-4">
       <div class="card-body">
         <div class="row g-3 align-items-end">
-          <div class="col-md-5">
+          <div class="col-md-4">
             <label for="searchInput" class="form-label small fw-semibold text-muted mb-1">Buscar</label>
-            <input type="search" id="searchInput" class="form-control" placeholder="Nome ou sigla..." autocomplete="off">
+            <input type="search" id="searchInput" class="form-control" placeholder="Equipamento ou tomador..." autocomplete="off">
           </div>
-          <div class="col-md-3">
-            <label for="blockFilter" class="form-label small fw-semibold text-muted mb-1">Bloco</label>
-            <select id="blockFilter" class="form-select">
-              <option value="">Todos os blocos</option>
+          <div class="col-md-2">
+            <label for="typeFilter" class="form-label small fw-semibold text-muted mb-1">Tipo de tomador</label>
+            <select id="typeFilter" class="form-select">
+              <option value="">Todos</option>
+              <option value="professor">Professor</option>
+              <option value="student">Aluno</option>
             </select>
           </div>
           <div class="col-md-2">
             <label for="statusFilter" class="form-label small fw-semibold text-muted mb-1">Status</label>
             <select id="statusFilter" class="form-select">
               <option value="">Todos</option>
-              <option value="active">Ativa</option>
-              <option value="inactive">Inativa</option>
+              <option value="pending">Pendente</option>
+              <option value="completed">Concluído</option>
             </select>
           </div>
           <div class="col-md-2">
-            <button type="button" id="clearFiltersBtn" class="btn btn-outline-secondary w-100">Limpar filtros</button>
+            <label for="dateFrom" class="form-label small fw-semibold text-muted mb-1">Início de</label>
+            <input type="date" id="dateFrom" class="form-control">
+          </div>
+          <div class="col-md-2">
+            <label for="dateTo" class="form-label small fw-semibold text-muted mb-1">Início até</label>
+            <input type="date" id="dateTo" class="form-control">
+          </div>
+        </div>
+        <div class="row mt-2">
+          <div class="col-12 d-flex justify-content-end">
+            <button type="button" id="clearFiltersBtn" class="btn btn-sm btn-outline-secondary">Limpar filtros</button>
           </div>
         </div>
       </div>
@@ -63,13 +75,15 @@
           <table class="table table-hover align-middle mb-0">
             <thead class="table-light border-bottom">
               <tr>
-                <th class="ps-4 py-3 fw-semibold small text-muted">Coordenadoria</th>
-                <th class="py-3 fw-semibold small text-muted">Bloco</th>
+                <th class="ps-4 py-3 fw-semibold small text-muted">Equipamento</th>
+                <th class="py-3 fw-semibold small text-muted">Tomador</th>
+                <th class="py-3 fw-semibold small text-muted">Início</th>
+                <th class="py-3 fw-semibold small text-muted">Devolução prevista</th>
                 <th class="py-3 fw-semibold small text-muted">Status</th>
-                <th class="py-3 fw-semibold small text-muted text-end pe-4">Ações</th>
+                <th class="py-3 fw-semibold small text-muted text-end pe-4">Ação</th>
               </tr>
             </thead>
-            <tbody id="coordinationTableBody"></tbody>
+            <tbody id="loanTableBody"></tbody>
           </table>
         </div>
       </div>
@@ -83,28 +97,6 @@
 
   </main>
 
-  <!-- Modal de exclusão -->
-  <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header border-0 pb-0">
-          <h5 class="modal-title fw-semibold" id="deleteModalLabel">Excluir coordenadoria</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
-        </div>
-        <div class="modal-body py-3">
-          <p class="text-muted mb-0" id="deleteModalBody">
-            Tem certeza que deseja excluir <strong id="deleteTargetName"></strong>?
-            Esta ação não pode ser desfeita.
-          </p>
-        </div>
-        <div class="modal-footer border-0 pt-0">
-          <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Excluir</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <!-- Toast de feedback -->
   <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1100">
     <div id="feedbackToast" class="toast align-items-center text-bg-dark border-0" role="alert" aria-live="assertive" aria-atomic="true">
@@ -117,7 +109,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../js/navbar.js"></script>
-  <script src="../js/coordination-data.js"></script>
-  <script src="../js/coordination-list.js"></script>
+  <script src="../js/loan-data.js"></script>
+  <script src="../js/loan-list.js"></script>
 </body>
 </html>
