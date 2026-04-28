@@ -20,8 +20,10 @@
 
   // Seção ativa detectada pelo pathname
   var active = '';
-  if      (path.includes('/projects/'))     active = 'projects';
+  if      (path.includes('/dashboard/')) active = 'dashboard';
+  else if (path.includes('/projects/'))     active = 'projects';
   else if (path.includes('/coordination/')) active = 'coordination';
+  else if (path.includes('/labs/'))         active = 'labs';
   else if (path.includes('/professors/'))   active = 'professors';
   else if (path.includes('/students/'))     active = 'students';
   else if (path.includes('/loans/'))        active = 'loans';
@@ -48,10 +50,10 @@
     '</button>',
     '<div class="collapse navbar-collapse" id="navbarApp">',
     '<ul class="navbar-nav me-auto ms-3 gap-1">',
-    navLink('#', 'Dashboard', ''),
+    navLink(base + '/dashboard/index.html', 'Dashboard', 'dashboard'),
     navLink(base + '/projects/index.html',    'Projetos',       'projects'),
     navLink(base + '/coordination/index.html', 'Coordenadorias', 'coordination'),
-    navLink('#',                               'Laboratórios',   'labs'),
+    navLink(base + '/labs/index.html',         'Laboratórios',   'labs'),
     navLink(base + '/professors/index.html',  'Professores',    'professors'),
     navLink(base + '/students/index.html',    'Alunos',         'students'),
     navLink(base + '/loans/index.html',       'Empréstimos',    'loans'),
