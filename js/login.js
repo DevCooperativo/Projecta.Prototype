@@ -17,9 +17,9 @@
   }
 
   function destinationFor(profile) {
-    if (profile === 'admin') return 'projects/index.html';
-    if (profile === 'professor') return 'projects/index.html';
-    return 'projects/index.html';
+    if (profile === 'admin') return '../dashboard/index.html';
+    if (profile === 'professor') return '../dashboard/index.html';
+    return '../dashboard/index.html';
   }
 
   document.addEventListener('DOMContentLoaded', function () {
